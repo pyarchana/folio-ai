@@ -1,104 +1,68 @@
-# Folio 💼⚡
-> **Local-First AI Financial Auditor for Freelancers & Solopreneurs**  
-> *Zero Cloud Leaks. Zero Missed Deductions. Powered by TabPFN & Gemma 2.*
+# folio
 
-[![Hacktoberfest Challenge Week 2](https://img.shields.io/badge/Hacktoberfest-Side%20Hustle%20Challenge-orange.svg)](https://dev.to/challenges/hacktoberfest-week2-2026-10-12)
-[![Open Source AI](https://img.shields.io/badge/Open%20Source%20AI-TabPFN%20%2B%20Gemma%202-blue.svg)](https://github.com/pyarchana/folio-ai)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Privacy: 100% Local Air-Gap](https://img.shields.io/badge/Privacy-100%25%20Local%20Air--Gap-emerald.svg)](https://github.com/pyarchana/folio-ai)
+A free, air-gapped tax auditor for freelancers and indie hackers. Drop your bank statement on the broadsheet, and TabPFN classifies every write-off while Gemma writes the legal defense for your CA or the IRS.
 
----
+**Try it:** https://folio-ai.onrender.com
 
-## 🌟 Overview
+![A live walkthrough of Folio](frontend/assets/demo.gif)
 
-Freelancers, solopreneurs, and remote tech consultants leave **thousands of dollars (or lakhs of rupees)** in legitimate tax write-offs on the table every year (developer tools, cloud servers, broadband, coworking spaces, hardware). 
+## What's inside
 
-Existing accounting software poses two major hurdles:
-1. **Privacy Risk:** Freelancers rightfully refuse to upload raw bank statements, client invoices, and income records to closed cloud AI servers.
-2. **SaaS Tax:** Solopreneurs operating on thin margins shouldn't pay \$30–\$50/month just to audit 40 transactions a month.
-3. **Tabular Blindspot:** Closed general-purpose LLMs hallucinate numbers and fail on raw tabular CSVs.
+- **The whole audit as a morning newspaper.** A vintage broadsheet gazette layout instead of a cold corporate dashboard. Columns, editorial headlines, volume tickers, and a red "AIR-GAPPED 100% LOCAL" rubber stamp.
+- **Drop a statement, get instant write-offs.** Drop in raw CSV exports from Chase, Mercury, Wise, Stripe, Razorpay, HDFC, or ICICI. Prior Labs' TabPFN 3.5 foundation model reads unstandardized bank lines and flags allowable write-offs with calibrated confidence scores.
+- **A legal defense certificate for every expense.** Click "Defend" and Google Gemma 2 synthesizes an official audit defense certificate citing exact statutory tax codes — Section 37(1) & 44ADA of the Indian Income Tax Act, or IRC §162(a) for IRS Schedule C.
+- **Four preloaded freelancer editions.** One click switches between an Indian tech freelancer (in ₹ INR), an indie developer running SaaS (in $ USD), a freelance designer, and a digital creator.
+- **A phantom subscription radar.** Catches zombie recurring SaaS charges, sneaky price increases, and accidental personal expenses before tax season hits.
+- **A 30-second spoken briefing.** Click audio briefing to hear a spoken recap of your total allowable deductions and money kept.
+- **Accountant-ready export.** One click downloads a clean, itemized CSV deduction schedule formatted for tax filing.
+- **Zero cloud leaks.** Runs completely on your own machine. Your bank transactions, invoices, and balances never touch closed cloud servers or training pipelines.
+- **No login, no accounts, and no monthly fees.** Everything runs in your browser and on localhost.
 
-**Folio** solves this with an air-gapped, local-first architecture. It pairs **Prior Labs' TabPFN 3.5** (foundation model for tabular data) with **Google's Gemma 2** (open weights) to automate expense categorization, flag phantom subscriptions, and generate audit-proof statutory defense statements.
+## A quick look
 
----
+**Drop a bank statement or browse a sample**
 
-## 🚀 Key Features
+![Dropping a bank statement and watching TabPFN classify expenses](docs/demo/1-upload-statement.gif)
 
-* **Zero-Shot Tabular Auditing (TabPFN 3.5):** Ingests raw bank/credit card CSVs (Chase, Mercury, Wise, Amex, HDFC, ICICI, PayPal, Stripe) and maps transactions to statutory tax categories with calibrated confidence scores.
-* **Statutory Audit Defense Copilot (Gemma 2):** One-click legal rationale generation citing exact tax codes:
-  * 🇮🇳 **Indian Income Tax Act (1961):** Section 37(1) (*wholly and exclusively for profession*), Section 32 (depreciation on tech hardware), and Section 44ADA (presumptive taxation).
-  * 🌐 **IRS Schedule C (US & Global):** IRC §162(a), §179 (first-year expensing), and §274 (business meals & travel).
-* **Tabular Anomaly & Subscription Radar:** Detects phantom/zombie recurring SaaS fees, sudden pricing spikes, and misclassified deductions.
-* **Spatial Glassmorphism UI:** Built with organic floating pill navigation, tactile bento stat cards, and dark/light ambient aesthetics.
-* **Multi-Currency Support:** Instant toggle between **₹ INR** and **\$ USD**.
-* **30-Second Audio Executive Briefing:** Browser-native Web Speech audio recap summarizing monthly write-offs and tax savings.
-* **Accountant-Ready Export:** Download itemized deduction schedules formatted as CSV.
+**Switch between INR and USD with one click**
 
----
+![Switching between Indian IT Act 44ADA and US IRC §162 regimes](docs/demo/2-switch-regimes.gif)
 
-## 🧠 Why Open Innovation Matters
+**Click Defend to get a statutory certificate from Gemma**
 
-| Dimension | Proprietary Closed APIs | Folio's Open-Source AI Stack |
-| :--- | :--- | :--- |
-| **Data Sovereignty** | Bank statements & invoices sent to external servers; potential training retention. | **100% Local Air-Gap:** Transaction data never leaves localhost. |
-| **Marginal Cost** | \$0.03 – \$0.06 per API call; recurring SaaS subscription fees. | **\$0.00:** Unlimited local inferences without API bills. |
-| **Tabular Precision** | General-purpose text LLMs stumble on raw numerical tables. | **TabPFN Foundation Model:** Specifically trained on tabular datasets. |
-| **Audit Durability** | Closed APIs change models or deprecate versions. | **Reproducible Open Weights:** Gemma 2 & TabPFN models run identically over time. |
+![Generating a statutory audit defense certificate with Google Gemma 2](docs/demo/3-gemma-defense.gif)
 
----
+**Copy the statement with one click**
 
-## 🛠️ Tech Stack
+![Copying the legal defense statement for an accountant or CA](docs/demo/4-copy-and-export.gif)
 
-* **Tabular Intelligence:** [Prior Labs TabPFN 3.5](https://platform.priorlabs.ai) / `tabpfn`
-* **Reasoning & Defense:** [Google Gemma 2](https://huggingface.co/google/gemma-2-2b-it) (Open Weights)
-* **Backend:** FastAPI, Uvicorn, Pandas, Scikit-learn
-* **Frontend:** HTML5, Tailwind CSS, Spatial Glassmorphism CSS, Vanilla ES Modules
-* **Audio:** Native Web Speech API / ElevenLabs integration
+## How it works
 
----
+Financial auditing has two hard problems that closed cloud LLMs handle poorly:
 
-## ⚡ Quick Start
+First, general-purpose chat models stumble on raw numerical tables. They hallucinate totals, swap debits with credits, and require complex prompt engineering just to parse a messy CSV line. **Prior Labs' TabPFN 3.5** fixes this because it is a foundation model trained specifically on tabular data. It understands banking distributions zero-shot without fine-tuning, classifying unstandardized vendor strings with calibrated confidence percentages.
 
-### 1. Clone the Repository
+Second, sending confidential bank statements, client names, and income records to closed third-party cloud APIs creates real privacy risks for freelancers. **Google Gemma 2** runs with open weights to generate formal statutory audit defense rationales on localhost, grounding every deduction in specific statutory language (Section 37(1) for Indian freelance expenses, or IRC §162 for US solopreneurs).
+
+Every model output is validated through Pydantic schemas before reaching the page. If a bank CSV has missing fields or unexpected headers, the parsing engine normalizes dates, currencies, and amounts automatically so the numbers on the broadsheet always match your statement.
+
+## Running it locally
+
 ```bash
 git clone https://github.com/pyarchana/folio-ai.git
 cd folio-ai
-```
-
-### 2. Install Dependencies
-```bash
 pip install -r requirements.txt
-```
-
-### 3. Launch the Server
-```bash
 python run.py
 ```
 
-Open your browser at **`http://127.0.0.1:8000`**.
+Open `http://127.0.0.1:8000` in your browser.
 
----
+To run the test suite:
 
-## 🧪 Testing
-
-Run the test suite with `pytest`:
 ```bash
 python -m pytest tests/
 ```
 
-All 8 tests verify CSV parsing, TabPFN tabular categorization, Gemma defense rationale generation, and FastAPI endpoints.
+## License
 
----
-
-## 🎯 Prize Categories Targeted
-
-* 🏆 **Hacktoberfest Challenge Week 2: Side Hustle** (Grand Prize)
-* 🌟 **Best Use of TabPFN** (\$200) — Prior Labs tabular foundation model
-* 🌟 **Best Use of Gemma** (\$200) — Google open-weight reasoning model
-* 🌟 **Best Use of Render / DigitalOcean** (Deployment-ready)
-
----
-
-## 📄 License
-
-MIT License. Designed with ❤️ for freelancers and indie creators worldwide.
+MIT

@@ -12,8 +12,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   initStateListeners();
   initEventListeners();
   
-  // Initial load with default Indian Freelancer persona
-  await loadPersona("indian-freelancer");
+  // Initial load
+  const params = new URLSearchParams(window.location.search);
+  const view = params.get("view");
+  
+  if (view === "indie") {
+    await loadPersona("indie-dev");
+  } else {
+    await loadPersona("indian-freelancer");
+  }
+
+  if (view === "tickers") {
+    window.scrollTo(0, 500);
+  } else if (view === "table") {
+    window.scrollTo(0, 840);
+  } else if (view === "modal") {
+    const firstDeductible = (State.currentAudit?.transactions || []).find(t => t.is_deductible);
+    if (firstDeductible) await openGemmaDefenseModal(firstDeductible.id);
+  }
 });
 
 let dom = {};
@@ -191,12 +207,20 @@ function initDropzone() {
 
 async function handleFileUpload(file) {
   try {
-    dom.dropzoneTitle.textContent = `Analyzing ${file.name} with TabPFN...`;
+    if (dom.dropzone) {
+      dom.dropzone.classList.add("border-yellow-500", "bg-yellow-50/60");
+    }
+    dom.dropzoneTitle.textContent = `⚙️ Analyzing ${file.name} with TabPFN 3.5...`;
     const res = await Api.uploadCsv(file);
     State.setAudit(res);
-    dom.dropzoneTitle.textContent = `Uploaded ${file.name} successfully`;
+    const txnCount = res.transactions?.length || 0;
+    dom.dropzoneTitle.textContent = `✓ Audited ${file.name} (${txnCount} Records Ingested)`;
+    if (dom.dropzone) {
+      dom.dropzone.classList.remove("border-yellow-500", "bg-yellow-50/60");
+      dom.dropzone.classList.add("border-emerald-600");
+    }
   } catch (err) {
-    alert("Error processing file: " + err.message);
+    console.error("Error processing file:", err);
     dom.dropzoneTitle.textContent = "Drop bank or credit card CSV here";
   }
 }
@@ -268,9 +292,20 @@ async function openGemmaDefenseModal(txnId) {
 
     // Bind Close and Copy buttons
     document.getElementById("close-modal-btn")?.addEventListener("click", closeModal);
-    document.getElementById("copy-defense-btn")?.addEventListener("click", () => {
-      navigator.clipboard.writeText(rationale.audit_defense_statement);
-      alert("Audit defense statement copied to clipboard!");
+    document.getElementById("copy-defense-btn")?.addEventListener("click", (e) => {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(rationale.audit_defense_statement).catch(() => {});
+      }
+      const btn = e.currentTarget;
+      if (btn) {
+        const origHTML = btn.innerHTML;
+        btn.innerHTML = `<span>✓ Copied to Clipboard</span>`;
+        btn.classList.add("bg-emerald-700", "text-white");
+        setTimeout(() => {
+          btn.innerHTML = origHTML;
+          btn.classList.remove("bg-emerald-700", "text-white");
+        }, 2000);
+      }
     });
   } catch (err) {
     dom.modalContent.innerHTML = `
