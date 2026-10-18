@@ -60,6 +60,23 @@ def audit_sample_persona(persona_key: str):
     return auditor.run_full_audit(raw_txns, persona_name=p_info["name"])
 
 
+@router.get("/sample/{persona_key}/download")
+def download_sample_csv(persona_key: str):
+    """Downloads raw sample CSV file so users can test uploading it."""
+    from fastapi.responses import FileResponse
+    if persona_key not in PERSONAS:
+        raise HTTPException(status_code=404, detail="Persona not found")
+    p_info = PERSONAS[persona_key]
+    file_path = DATA_DIR / p_info["file"]
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="Sample dataset missing")
+    return FileResponse(
+        path=str(file_path),
+        filename=p_info["file"],
+        media_type="text/csv"
+    )
+
+
 @router.post("/upload", response_model=AuditResult)
 async def upload_csv_and_audit(file: UploadFile = File(...)):
     """Uploads user bank CSV and executes local TabPFN audit with 100% data privacy."""

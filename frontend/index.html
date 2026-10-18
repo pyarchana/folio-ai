@@ -3,59 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Folio — Local-First AI Financial Auditor for Freelancers</title>
+  <title>The Folio Chronicle — Local-First AI Financial Auditor</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            sand: {
-              50: '#fdfbf7',
-              100: '#f7f5f0',
-              200: '#e5e1d8',
-              300: '#d5cfc1',
-            }
-          }
-        }
-      }
-    }
-  </script>
   
-  <!-- Custom Spatial Glassmorphism Styles -->
+  <!-- Google Fonts: Playfair Display (Headlines), Newsreader (Editorial), Courier Prime (Ledger), Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Newspaper Broadsheet & Gazette Styles -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="antialiased selection:bg-zinc-900 selection:text-white">
+<body class="selection:bg-yellow-200 selection:text-black p-3 sm:p-6 lg:p-8">
 
-  <!-- ================= TOP FLOATING NAVIGATION PILL ================= -->
-  <header class="fixed top-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
-    <div class="glass-pill-nav pointer-events-auto flex items-center justify-between gap-4 md:gap-8 px-6 py-3 rounded-full w-full max-w-5xl">
-      <!-- Logo & Airgap Status -->
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-white font-bold text-sm shadow-md">
-          F
-        </div>
-        <span class="font-bold tracking-tight text-lg text-zinc-900">Folio</span>
-        <div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-medium border border-emerald-200">
+  <!-- ================= BROADSHEET NEWSPAPER CONTAINER ================= -->
+  <div class="max-w-[1480px] mx-auto border-2 border-zinc-950 bg-[#fcfbf9] shadow-[6px_6px_0px_0px_#18181b] p-4 sm:p-8 md:p-10 mb-12">
+    
+    <!-- TOP MASTHEAD TICKER BAR (SINGLE CRISP LINE) -->
+    <div class="flex items-center justify-between gap-4 pb-2 mb-3 border-b border-zinc-950 text-[11px] font-ledger text-zinc-700 uppercase overflow-x-auto whitespace-nowrap">
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <span><strong>VOL. I</strong> — NO. 42</span>
+        <span>•</span>
+        <span>EST. OCT 2026</span>
+        <span>•</span>
+        <span class="bg-yellow-200 px-2 py-0.5 border border-zinc-950 font-bold text-zinc-950">HACKTOBERFEST EDITION</span>
+      </div>
+      <div class="hidden lg:block font-editorial italic text-xs font-semibold text-zinc-800 text-center truncate">
+        "The Independent Freelancer's Financial Intelligence Gazette"
+      </div>
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <span class="flex items-center gap-1.5 font-bold text-emerald-800">
           <span class="pulse-green"></span>
-          <span>100% Local Air-Gap</span>
+          100% LOCAL AIR-GAP
+        </span>
+        <span>•</span>
+        <span>FREE & OPEN SOURCE</span>
+      </div>
+    </div>
+
+    <!-- MAIN NEWSPAPER TITLE MASTHEAD (SINGLE LINE TITLE) -->
+    <header class="text-center py-4 sm:py-5 border-y-4 border-double border-zinc-950 mb-4">
+      <div class="flex items-center justify-between gap-4">
+        <!-- Left Ear: Model Dispatches -->
+        <div class="hidden md:block text-left masthead-ear w-44 flex-shrink-0">
+          <div class="font-bold text-[9px] text-zinc-500 uppercase">INTELLIGENCE CORE</div>
+          <div class="font-bold text-xs text-zinc-900 font-ledger">TabPFN 3.5</div>
+          <div class="text-[9px] text-zinc-600">Zero-Shot Tabular Classifier</div>
+        </div>
+
+        <!-- Center Masthead Logo (GUARANTEED SINGLE LINE) -->
+        <div class="flex-1 text-center px-2">
+          <h1 class="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-zinc-950 uppercase leading-none whitespace-nowrap">
+            The Folio Chronicle
+          </h1>
+          <p class="font-editorial italic text-xs sm:text-sm text-zinc-700 mt-2 font-medium">
+            Devoted to Zero Cloud Leaks, Legitimate Tax Deductions & Solopreneur Defense
+          </p>
+        </div>
+
+        <!-- Right Ear: Legal Copilot -->
+        <div class="hidden md:block text-right masthead-ear w-44 flex-shrink-0">
+          <div class="font-bold text-[9px] text-zinc-500 uppercase">DEFENSE COPILOT</div>
+          <div class="font-bold text-xs text-zinc-900 font-ledger">Google Gemma 2</div>
+          <div class="text-[9px] text-zinc-600">Statutory Tax Rationale</div>
         </div>
       </div>
+    </header>
 
-      <!-- Center Models Indicator -->
-      <div class="hidden md:flex items-center gap-2 text-xs text-zinc-500 font-mono">
-        <span class="px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-700">TabPFN 3.5</span>
-        <span>+</span>
-        <span class="px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-700">Gemma 2</span>
+    <!-- NEWSPAPER SUB-NAV & CONTROLS BAR (SINGLE LINE) -->
+    <div class="flex items-center justify-between gap-3 py-2.5 px-3 bg-[#f5f2eb] border-y border-zinc-950 mb-8 text-xs overflow-x-auto whitespace-nowrap">
+      <!-- Editions / Persona Switcher -->
+      <div class="flex items-center gap-1.5 flex-nowrap flex-shrink-0" id="persona-pills">
+        <span class="font-ledger font-bold text-[10px] text-zinc-500 uppercase mr-1 hidden sm:inline">TRY SAMPLES:</span>
+        <button onclick="switchPersona('indian-freelancer')" data-persona="indian-freelancer" class="persona-pill edition-tab active whitespace-nowrap text-xs px-3 py-1.5" title="Indian Tech Freelancer (IT Act 44ADA & 37)">
+          🇮🇳 Indian Freelancer (INR)
+        </button>
+        <button onclick="switchPersona('indie-dev')" data-persona="indie-dev" class="persona-pill edition-tab whitespace-nowrap text-xs px-3 py-1.5" title="Indie Developer (IRS Schedule C)">
+          💻 Indie Dev (USD)
+        </button>
+        <button onclick="switchPersona('freelance-designer')" data-persona="freelance-designer" class="persona-pill edition-tab whitespace-nowrap text-xs px-3 py-1.5" title="Freelance Designer">
+          🎨 Designer (USD)
+        </button>
+        <button onclick="switchPersona('digital-creator')" data-persona="digital-creator" class="persona-pill edition-tab whitespace-nowrap text-xs px-3 py-1.5" title="Digital Creator">
+          📹 Creator (USD)
+        </button>
       </div>
 
-      <!-- Actions: Currency Toggle & Audio Briefing -->
-      <div class="flex items-center gap-2.5">
+      <!-- Actions: Currency Toggle & Spoken Audio Dispatch -->
+      <div class="flex items-center gap-2 flex-shrink-0">
         <button 
           id="currency-toggle-btn"
-          class="px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-zinc-800 text-xs font-semibold border border-zinc-200/80 shadow-sm transition hover:scale-105 active:scale-95"
+          class="news-btn-outline px-3 py-1.5 text-xs font-ledger font-bold cursor-pointer"
           title="Toggle currency display"
         >
           ₹ INR
@@ -63,7 +103,8 @@
 
         <button 
           id="audio-briefing-btn"
-          class="px-4 py-1.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-semibold shadow-md transition hover:scale-105 active:scale-95 flex items-center gap-2"
+          class="news-btn-black px-3.5 py-1.5 text-xs flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+          title="Listen to spoken audio briefing"
         >
           <div id="audio-wave" class="sound-wave hidden">
             <div class="sound-bar"></div>
@@ -71,192 +112,331 @@
             <div class="sound-bar"></div>
             <div class="sound-bar"></div>
           </div>
-          <span id="audio-btn-text">Audio Briefing</span>
+          <span id="audio-btn-text">🔊 Audio Briefing</span>
         </button>
       </div>
     </div>
-  </header>
 
-  <!-- ================= LEFT FLOATING VERTICAL DOCK ================= -->
-  <aside class="floating-dock glass-pill hidden lg:flex">
-    <button class="dock-btn active" data-target="hero-section" title="Dashboard">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-    </button>
-    <button class="dock-btn" data-target="table-section" title="TabPFN Tabular Explorer">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-    </button>
-    <button class="dock-btn" data-target="anomalies-section" title="Anomaly Radar">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-    </button>
-    <button class="dock-btn" data-target="export-section" title="Export Schedule C">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-    </button>
-  </aside>
-
-  <!-- ================= MAIN WORKSPACE CANVAS ================= -->
-  <main class="pt-32 pb-24 px-4 md:px-8 max-w-7xl mx-auto">
-
-    <!-- Hero Section -->
-    <section id="hero-section" class="text-center max-w-3xl mx-auto mb-10">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 border border-zinc-200/80 shadow-sm text-xs font-medium text-zinc-700 mb-4">
-        <span>⚡ Built for Hacktoberfest Open-Source AI Challenge</span>
-      </div>
-      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-950 mb-4 leading-tight">
-        Audit with ease. Keep every dollar. Zero cloud leaks.
-      </h1>
-      <p class="text-base md:text-lg text-zinc-600 leading-relaxed mb-6 font-normal">
-        Local-first financial intelligence for freelancers. TabPFN classifies write-offs directly from raw bank CSVs, while Gemma 2 crafts statutory audit defense statements.
-      </p>
-
-      <!-- 1-Click Persona Chips -->
-      <div class="flex flex-wrap items-center justify-center gap-2 mb-8" id="persona-pills">
-        <button onclick="switchPersona('indian-freelancer')" data-persona="indian-freelancer" class="persona-pill px-4 py-2 rounded-full text-xs font-semibold transition shadow-sm border border-zinc-200/80 bg-zinc-900 text-white">
-          🇮🇳 Indian Tech Freelancer (INR)
-        </button>
-        <button onclick="switchPersona('indie-dev')" data-persona="indie-dev" class="persona-pill px-4 py-2 rounded-full text-xs font-semibold transition shadow-sm border border-zinc-200/80 bg-white/80 text-zinc-700 hover:bg-white">
-          💻 Indie Developer (USD)
-        </button>
-        <button onclick="switchPersona('freelance-designer')" data-persona="freelance-designer" class="persona-pill px-4 py-2 rounded-full text-xs font-semibold transition shadow-sm border border-zinc-200/80 bg-white/80 text-zinc-700 hover:bg-white">
-          🎨 Freelance Designer (USD)
-        </button>
-        <button onclick="switchPersona('digital-creator')" data-persona="digital-creator" class="persona-pill px-4 py-2 rounded-full text-xs font-semibold transition shadow-sm border border-zinc-200/80 bg-white/80 text-zinc-700 hover:bg-white">
-          📹 Digital Creator (USD)
-        </button>
-      </div>
-
-      <!-- CSV Dropzone Box -->
-      <div id="dropzone" class="glass-panel dropzone-box p-8 max-w-xl mx-auto cursor-pointer text-center group hover:border-zinc-400">
-        <input type="file" id="file-input" class="hidden" accept=".csv,.txt">
-        <div class="w-12 h-12 rounded-2xl bg-zinc-100 group-hover:bg-zinc-200/80 flex items-center justify-center mx-auto mb-3 transition">
-          <svg class="w-6 h-6 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-        </div>
-        <h3 id="dropzone-title" class="text-sm font-semibold text-zinc-800 mb-1">
-          Drop your bank or credit card CSV here
-        </h3>
-        <p class="text-xs text-zinc-500">
-          Supports Chase, Mercury, Wise, Amex, HDFC, ICICI, SBI, PayPal & Stripe. Data stays 100% on localhost.
-        </p>
-      </div>
-    </section>
-
-    <!-- Bento Stats Section -->
-    <section id="bento-stats-container">
-      <!-- Populated dynamically by Components.renderBentoStats -->
-    </section>
-
-    <!-- Two-Column Workspace -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- ================= BROADSHEET FRONT PAGE HERO GRID (Inspired by Notion Redesign) ================= -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-10 pb-10 border-b-2 border-zinc-950">
       
-      <!-- Left Column: Tabular Transactions (8 cols) -->
-      <div id="table-section" class="lg:col-span-8 space-y-6">
-        <div class="glass-panel p-6">
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+      <!-- LEFT BROAD COLUMN (8 Cols): MAIN HEADLINE & DISPATCH DROPZONE -->
+      <div class="lg:col-span-8 lg:pr-8 lg:border-r border-zinc-950">
+        
+        <!-- Headline & Red Stamp Badge Container -->
+        <div class="relative mb-6">
+          <!-- Circular Red Stamp (Notion Newspaper Style) -->
+          <div class="absolute -top-3 right-0 sm:right-6 rubber-stamp z-10">
+            <span class="rubber-stamp-text-outer">AIR-GAPPED</span>
+            <span class="rubber-stamp-text-center">VERIFIED</span>
+            <span class="rubber-stamp-text-date">100% LOCAL</span>
+          </div>
+
+          <div class="text-[11px] font-ledger font-bold tracking-[0.2em] text-zinc-600 uppercase mb-2">
+            SPECIAL REPORT • TAX INTELLIGENCE ON LOCALHOST
+          </div>
+
+          <h2 class="font-headline text-4xl sm:text-5xl lg:text-6xl font-black text-zinc-950 uppercase tracking-tight leading-[0.98] mb-4">
+            Audit with Ease.<br>
+            <span class="italic font-normal font-editorial">Keep every single dollar.</span>
+          </h2>
+
+          <p class="font-editorial text-base sm:text-lg text-zinc-800 leading-relaxed font-normal max-w-2xl">
+            Prior Labs' TabPFN 3.5 classifies tax deductions directly from raw bank CSVs, while Google Gemma 2 crafts statutory audit defense rationales. Financial data never leaves localhost.
+          </p>
+        </div>
+
+        <!-- Newspaper Dispatch Dropzone Box (Active Interactive Station) -->
+        <div id="dropzone" class="dropzone-newspaper p-6 sm:p-7 cursor-pointer group text-center mb-6">
+          <input type="file" id="file-input" class="hidden" accept=".csv,.txt">
+          
+          <div class="flex items-center justify-center gap-2 mb-2">
+            <span class="badge-stamp badge-stamp-green text-[9px]">● READY FOR STATEMENT</span>
+            <span class="badge-stamp badge-stamp-black text-[9px]">AIR-GAPPED IN-MEMORY</span>
+          </div>
+
+          <h3 id="dropzone-title" class="font-headline text-lg sm:text-xl font-bold text-zinc-950 mb-1.5 uppercase tracking-tight">
+            Drop Bank or Credit Card CSV Statement Here
+          </h3>
+          <p class="font-editorial text-xs text-zinc-600 mb-4 max-w-lg mx-auto">
+            Zero-shot tabular classification powered by TabPFN 3.5. Instant statutory defense via Gemma 2.
+          </p>
+
+          <!-- Interactive Action Buttons -->
+          <div class="flex flex-wrap items-center justify-center gap-3 mb-3">
+            <button 
+              type="button"
+              onclick="document.getElementById('file-input').click()" 
+              class="news-btn-black text-xs px-4 py-2 flex items-center gap-2 cursor-pointer"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+              <span>Browse CSV File</span>
+            </button>
+
+            <button 
+              type="button"
+              onclick="event.stopPropagation(); window.open('/api/audit/sample/indian-freelancer/download', '_blank')" 
+              class="news-btn-yellow text-xs px-4 py-2 flex items-center gap-1.5 cursor-pointer"
+              title="Download a test CSV file to test dragging it in"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>Download Test CSV</span>
+            </button>
+          </div>
+
+          <div class="font-ledger text-[10px] text-zinc-500 uppercase tracking-wider">
+            Supports Chase, Mercury, Wise, Amex, HDFC, ICICI, SBI, PayPal & Stripe.
+          </div>
+        </div>
+
+        <!-- Quick Tip Sub-Banner -->
+        <div class="flex items-center justify-between p-2.5 bg-[#f5f2eb] border border-zinc-950 text-xs font-editorial">
+          <span class="font-bold text-zinc-900">★ STATUTORY NOTICE:</span>
+          <span class="text-zinc-700">All audit defense arguments are mapped directly to IT Act Section 37(1) / Section 44ADA (India) & IRS Schedule C IRC §162 (US).</span>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN (4 Cols): BROADSHEET BULLETINS (Exact layout from the Notion screenshot) -->
+      <div class="lg:col-span-4 space-y-4">
+        
+        <!-- Engraved Header Box -->
+        <div class="border-2 border-zinc-950 p-4 bg-[#f5f2eb] text-center shadow-[3px_3px_0px_0px_#18181b]">
+          <div class="text-[10px] font-ledger font-bold uppercase tracking-widest text-zinc-500 mb-0.5">THE ARCHITECTURE</div>
+          <h3 class="font-headline text-lg sm:text-xl font-extrabold uppercase tracking-tight text-zinc-950">
+            Built to Protect Every Solopreneur
+          </h3>
+          <p class="font-editorial italic text-xs text-zinc-600 mt-1">
+            Four pillars of air-gapped financial independence
+          </p>
+        </div>
+
+        <!-- Bulletin 1: TabPFN 3.5 -->
+        <div class="p-3.5 news-card-subtle">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-headline font-bold text-xs uppercase tracking-wider text-zinc-950">01 / TABULAR AI</span>
+            <span class="badge-stamp badge-stamp-black">Prior Labs</span>
+          </div>
+          <p class="font-editorial text-xs text-zinc-700 leading-snug">
+            Zero-shot tabular foundation model classifies unstandardized bank CSV lines without training.
+          </p>
+        </div>
+
+        <!-- Bulletin 2: Gemma 2 Copilot -->
+        <div class="p-3.5 news-card-subtle">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-headline font-bold text-xs uppercase tracking-wider text-zinc-950">02 / LEGAL DEFENSE</span>
+            <span class="badge-stamp badge-stamp-black">Google Gemma 2</span>
+          </div>
+          <p class="font-editorial text-xs text-zinc-700 leading-snug">
+            Open weights generate formal legal audit defense rationales and statutory checklists.
+          </p>
+        </div>
+
+        <!-- Bulletin 3: Air-Gap Confidentiality -->
+        <div class="p-3.5 news-card-subtle">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-headline font-bold text-xs uppercase tracking-wider text-zinc-950">03 / AIR-GAP PURITY</span>
+            <span class="badge-stamp badge-stamp-green">Zero Cloud</span>
+          </div>
+          <p class="font-editorial text-xs text-zinc-700 leading-snug">
+            All code executes on localhost. Not a single financial transaction is ever sent to external cloud APIs.
+          </p>
+        </div>
+
+        <!-- Bulletin 4: Accountant Export -->
+        <div class="p-3.5 news-card-subtle">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-headline font-bold text-xs uppercase tracking-wider text-zinc-950">04 / DISPATCH READY</span>
+            <span class="badge-stamp badge-stamp-black">CA / CPA Ready</span>
+          </div>
+          <p class="font-editorial text-xs text-zinc-700 leading-snug">
+            One-click CSV ledger export with complete statutory justifications for tax filing.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ================= GAZETTE KEY FINANCIAL METRICS TICKER ================= -->
+    <div id="bento-stats-container">
+      <!-- Populated dynamically by Components.renderBentoStats -->
+    </div>
+
+    <!-- ================= WORKSPACE TABLE & REPORTS SECTION ================= -->
+    <main class="mt-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left Broadsheet Section: TabPFN Classified Transactions Ledger (8 cols) -->
+        <div id="table-section" class="lg:col-span-8 news-card p-4 sm:p-5">
+          
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-zinc-950">
             <div>
               <div class="flex items-center gap-2">
-                <h2 class="text-lg font-bold text-zinc-900">TabPFN Classified Transactions</h2>
-                <span id="transaction-count-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-600 font-mono">
+                <h3 class="font-headline text-xl sm:text-2xl font-bold uppercase tracking-tight text-zinc-950">
+                  TabPFN Classified Transactions
+                </h3>
+                <span id="transaction-count-badge" class="badge-stamp badge-stamp-black font-ledger">
                   Loading...
                 </span>
               </div>
-              <p class="text-xs text-zinc-500 mt-0.5">Zero-shot tabular classification & IRS Schedule C / Sec 37(1) mapping</p>
+              <p class="font-editorial text-xs text-zinc-600 mt-0.5">
+                Zero-shot tabular classification & statutory code mapping
+              </p>
             </div>
 
-            <!-- Search Bar -->
+            <!-- Search Bar (Newspaper Style) -->
             <div class="relative w-full sm:w-64">
               <input 
                 type="text" 
                 id="search-input"
                 placeholder="Search vendor or category..." 
-                class="w-full px-3.5 py-2 pl-9 rounded-full bg-white/80 border border-zinc-200/80 text-xs focus:outline-none focus:ring-2 focus:ring-zinc-900 transition"
+                class="w-full px-3 py-1.5 border border-zinc-950 bg-white font-ledger text-xs focus:outline-none focus:ring-2 focus:ring-yellow-400"
               >
-              <svg class="w-4 h-4 text-zinc-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
           </div>
 
-          <!-- Filter Tabs -->
-          <div class="flex items-center gap-2 border-b border-zinc-200/60 pb-3 mb-4 overflow-x-auto">
-            <button class="filter-tab active px-3.5 py-1.5 rounded-full text-xs font-semibold bg-zinc-900 text-white transition" data-filter="all">
+          <!-- Section Filter Tabs -->
+          <div class="flex items-center gap-2 pb-3 mb-4 overflow-x-auto border-b border-zinc-950/20">
+            <button class="filter-tab active" data-filter="all">
               All Transactions
             </button>
-            <button class="filter-tab px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 transition" data-filter="deductible">
-              ✓ Eligible Write-Offs Only
+            <button class="filter-tab" data-filter="deductible">
+              ✓ Eligible Write-Offs
             </button>
-            <button class="filter-tab px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 transition" data-filter="anomalies">
+            <button class="filter-tab" data-filter="anomalies">
               ⚡ Flagged Anomalies
             </button>
-            <button class="filter-tab px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 transition" data-filter="income">
+            <button class="filter-tab" data-filter="income">
               💰 Revenue / Income
             </button>
           </div>
 
-          <!-- Table Container -->
+          <!-- Ledger Table Container -->
           <div class="overflow-x-auto">
             <table class="w-full folio-table text-left">
               <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Vendor / Details</th>
+                  <th>Vendor & Dispatch</th>
                   <th>Classification</th>
                   <th class="text-right">Amount</th>
                   <th class="text-center">Confidence</th>
-                  <th class="text-right">Gemma Action</th>
+                  <th class="text-right">Statute</th>
                 </tr>
               </thead>
               <tbody id="transactions-table-body">
-                <!-- Populated dynamically -->
+                <!-- Populated dynamically by Components.renderTableRows -->
               </tbody>
             </table>
           </div>
+
         </div>
+
+        <!-- Right Broadsheet Sidebar (4 cols): Breakdown & Anomaly Radar -->
+        <div class="lg:col-span-4 space-y-6">
+          
+          <!-- Category Distribution Card -->
+          <div class="news-card p-5">
+            <div class="flex items-center justify-between pb-2 mb-3 border-b border-zinc-950">
+              <h4 class="font-headline font-bold text-sm uppercase tracking-tight text-zinc-950">
+                Deduction Distribution
+              </h4>
+              <span class="text-[10px] font-ledger text-zinc-500 uppercase">ALLOWABLE</span>
+            </div>
+            <p class="font-editorial text-xs text-zinc-600 mb-4">
+              Breakdown by allowable statutory expense categories
+            </p>
+            <div id="category-progress-container">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- TabPFN Anomaly Radar Card -->
+          <div id="anomalies-section" class="news-card p-5">
+            <div class="flex items-center justify-between pb-2 mb-3 border-b border-zinc-950">
+              <h4 class="font-headline font-bold text-sm uppercase tracking-tight text-zinc-950">
+                TabPFN Anomaly Radar
+              </h4>
+              <span class="badge-stamp badge-stamp-black font-ledger text-[9px]">REAL-TIME</span>
+            </div>
+            <p class="font-editorial text-xs text-zinc-600 mb-3">
+              Spots phantom recurring SaaS & unexpected price spikes
+            </p>
+            <div id="anomaly-list-container">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Accountant-Ready Export Card -->
+          <div id="export-section" class="news-card p-5 bg-[#f5f2eb]">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-zinc-950">
+              <h4 class="font-headline font-bold text-sm uppercase tracking-tight text-zinc-950">
+                Accountant-Ready Export
+              </h4>
+              <span class="badge-stamp badge-stamp-green font-ledger text-[9px]">CSV</span>
+            </div>
+            <p class="font-editorial text-xs text-zinc-700 mb-4 leading-relaxed">
+              Generate an itemized deduction ledger with statutory citations ready for your Chartered Accountant (India) or CPA (US).
+            </p>
+            <button 
+              id="export-csv-btn" 
+              class="w-full news-btn-black py-2.5 px-4 text-xs flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>📄 Export Tax Schedule (CSV)</span>
+            </button>
+          </div>
+
+        </div>
+
       </div>
 
-      <!-- Right Column: Category Breakdown & Anomaly Radar (4 cols) -->
-      <div class="lg:col-span-4 space-y-6">
-        
-        <!-- Category Breakdown Panel -->
-        <div class="glass-panel p-6">
-          <h3 class="text-sm font-bold text-zinc-900 uppercase tracking-wider mb-1">Deduction Distribution</h3>
-          <p class="text-xs text-zinc-500 mb-4">Breakdown by allowable tax expense categories</p>
-          <div id="category-progress-container">
-            <!-- Populated dynamically -->
-          </div>
-        </div>
+    </main>
 
-        <!-- Anomaly Radar Panel -->
-        <div id="anomalies-section" class="glass-panel p-6">
-          <div class="flex items-center justify-between mb-1">
-            <h3 class="text-sm font-bold text-zinc-900 uppercase tracking-wider">TabPFN Anomaly Radar</h3>
-            <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-medium">Real-time</span>
-          </div>
-          <p class="text-xs text-zinc-500 mb-4">Spots phantom recurring charges & fee spikes</p>
-          <div id="anomaly-list-container">
-            <!-- Populated dynamically -->
-          </div>
-        </div>
-
-        <!-- Export Action Card -->
-        <div id="export-section" class="glass-panel p-6 bg-gradient-to-br from-zinc-900 to-zinc-800 text-white">
-          <h3 class="text-sm font-bold uppercase tracking-wider mb-2 text-zinc-200">Accountant-Ready Export</h3>
-          <p class="text-xs text-zinc-400 mb-5 leading-relaxed">
-            Generate an itemized deduction schedule with statutory citations ready for your CA or CPA.
+    <!-- ================= NEWSPAPER BROADSHEET COLOPHON FOOTER ================= -->
+    <footer class="mt-12 pt-6 border-t-4 border-double border-zinc-950 text-xs font-editorial">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start pb-6">
+        <div>
+          <div class="font-headline font-extrabold text-sm uppercase text-zinc-950 mb-1">THE FOLIO CHRONICLE</div>
+          <p class="text-zinc-600 text-xs leading-relaxed">
+            A local-first, air-gapped AI financial auditor engineered for freelancers, solopreneurs, and independent developers. Data stays strictly on localhost.
           </p>
-          <button 
-            id="export-csv-btn" 
-            class="w-full py-3 px-4 rounded-full bg-white hover:bg-zinc-100 text-zinc-950 font-semibold text-xs transition shadow-lg hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
-          >
-            <span>📄 Export Tax Schedule (CSV)</span>
-          </button>
         </div>
 
+        <div class="text-center">
+          <div class="font-headline font-bold text-xs uppercase text-zinc-950 mb-1.5">OPEN-SOURCE FOUNDATION</div>
+          <div class="flex flex-wrap items-center justify-center gap-2 text-[11px] font-ledger">
+            <span class="px-2 py-0.5 bg-[#f0ebe1] border border-zinc-950">Prior Labs TabPFN 3.5</span>
+            <span class="px-2 py-0.5 bg-[#f0ebe1] border border-zinc-950">Google Gemma 2</span>
+            <span class="px-2 py-0.5 bg-[#f0ebe1] border border-zinc-950">IT Act 44ADA</span>
+            <span class="px-2 py-0.5 bg-[#f0ebe1] border border-zinc-950">IRS IRC §162</span>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <div class="font-headline font-bold text-xs uppercase text-zinc-950 mb-1">COLOPHON & CREDITS</div>
+          <p class="text-zinc-600 text-xs leading-relaxed mb-2">
+            Crafted with open-source AI by <strong class="text-zinc-950">Archana</strong><br>
+            for Hacktoberfest 2026.
+          </p>
+          <a href="https://github.com/pyarchana/folio-ai" target="_blank" rel="noopener" class="font-ledger text-xs font-bold text-zinc-950 underline hover:bg-yellow-200">
+            github.com/pyarchana/folio-ai →
+          </a>
+        </div>
       </div>
 
-    </div>
+      <div class="pt-3 border-t border-zinc-950/20 text-center font-ledger text-[10px] text-zinc-500 uppercase">
+        PRINTED ON LOCALHOST • MIT LICENSED • ZERO BYTES LEAKED TO CLOUD
+      </div>
+    </footer>
 
-  </main>
+  </div>
 
-  <!-- ================= SPATIAL GLASS MODAL (Gemma 2 Defense) ================= -->
-  <div id="modal-overlay" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-md flex items-center justify-center p-4 hidden">
-    <div id="modal-content" class="glass-modal max-w-2xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300">
+  <!-- ================= STATUTORY DISPATCH MODAL (Gemma 2 Defense) ================= -->
+  <div id="modal-overlay" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div id="modal-content" class="max-w-2xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-200">
       <!-- Populated dynamically by Components.renderGemmaModalContent -->
     </div>
   </div>

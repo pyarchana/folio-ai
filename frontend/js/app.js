@@ -215,11 +215,9 @@ async function loadPersona(personaKey) {
 function highlightPersonaPill(personaKey) {
   document.querySelectorAll(".persona-pill").forEach((pill) => {
     if (pill.getAttribute("data-persona") === personaKey) {
-      pill.classList.add("bg-zinc-900", "text-white");
-      pill.classList.remove("bg-white/80", "text-zinc-700");
+      pill.classList.add("active");
     } else {
-      pill.classList.remove("bg-zinc-900", "text-white");
-      pill.classList.add("bg-white/80", "text-zinc-700");
+      pill.classList.remove("active");
     }
   });
 }
