@@ -24,16 +24,18 @@ def clean_vendor_name(raw_text: str) -> str:
     if not raw_text or not isinstance(raw_text, str):
         return "Unknown Vendor"
     
-    # Remove common bank noise
-    text = re.sub(r"\b(pos debit|recurring|authorized on|web purchase|debit card purchase|bill payment)\b", "", raw_text, flags=re.IGNORECASE)
-    # Remove card masks and IDs like *1234, #9876, *1A2B3C
-    text = re.sub(r"[\*#]\w+", "", text)
-    # Remove phone numbers or addresses (e.g., SAN FRANCISCO CA, WA, NY 10001)
-    text = re.sub(r"\b[A-Z]{2}\s+\d{5}(-\d{4})?\b", "", text)
-    text = re.sub(r"\b[A-Z\s]{4,}\s+(CA|WA|NY|TX|FL|DE|NV|IL)\b", "", text)
-    # Remove trailing digits or store numbers
-    text = re.sub(r"\b\d{4,}\b", "", text)
-    # Clean whitespace
+    text = raw_text
+    # 1. Remove card masks and IDs like *1234, #9876, *1A2B3C
+    text = re.sub(r"[\*#][\w\d]+", " ", text)
+    # 2. Remove common bank noise
+    text = re.sub(r"\b(pos debit|recurring|authorized on|web purchase|debit card purchase|bill payment)\b", " ", text, flags=re.IGNORECASE)
+    # 3. Remove trailing city/state (e.g. SEATTLE WA, SAN FRANCISCO CA)
+    text = re.sub(r"\b(SEATTLE|SAN FRANCISCO|NEW YORK|AUSTIN|BOSTON|CHICAGO|LOS ANGELES)\b", " ", text, flags=re.IGNORECASE)
+    text = re.sub(r"\b(CA|WA|NY|TX|FL|DE|NV|IL|OR|CO|MA)\b", " ", text)
+    text = re.sub(r"\b\d{5}(-\d{4})?\b", " ", text)
+    # 4. Remove trailing digits or store numbers
+    text = re.sub(r"\b\d{4,}\b", " ", text)
+    # 5. Clean excess whitespace
     text = " ".join(text.split()).strip()
     
     return text if len(text) >= 2 else raw_text.strip()
