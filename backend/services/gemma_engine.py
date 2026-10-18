@@ -63,17 +63,75 @@ IRS_CODE_MAP = {
     },
 }
 
+# Indian Income Tax Act (1961) Citations & Section 44ADA / Section 37(1)
+INDIA_CODE_MAP = {
+    TaxCategory.SOFTWARE_SAAS: {
+        "code": "IT Act 1961 §37(1) - Expenses Incurred Wholly & Exclusively for Profession",
+        "rationale_template": "Software subscription with {vendor} is essential professional expenditure for software engineering, design, and client project execution under Section 37(1).",
+        "docs": ["Tax invoice with GSTIN / overseas invoice", "Credit card / bank statement proof", "Client project scope"],
+    },
+    TaxCategory.CLOUD_HOSTING: {
+        "code": "IT Act 1961 §37(1) - Cloud Computing & Data Operations",
+        "rationale_template": "Cloud compute, hosting, and database services provided by {vendor} are necessary operational infrastructure to host production services and APIs.",
+        "docs": ["Itemized AWS/GCP/DigitalOcean monthly invoice", "Foreign inward remittance certificate (FIRC) if applicable"],
+    },
+    TaxCategory.EQUIPMENT_HARDWARE: {
+        "code": "IT Act 1961 §32 - Depreciation on Computers & Laptops (40% WDV) / §37(1)",
+        "rationale_template": "Hardware equipment purchased from {vendor} constitutes capital asset used 100% for freelancing/profession, qualifying for 40% depreciation block under Section 32.",
+        "docs": ["GST tax invoice with serial number", "Asset register entry", "Proof of delivery & usage"],
+    },
+    TaxCategory.OFFICE_SUPPLIES: {
+        "code": "IT Act 1961 §30 / §37(1) - Coworking Space & Workplace Amenities",
+        "rationale_template": "Coworking desk rentals and workspace utilities via {vendor} are fully allowable as professional workplace expenditures under Section 30 and 37(1).",
+        "docs": ["WeWork / coworking space invoice with GST", "Bank payment transaction receipt"],
+    },
+    TaxCategory.PROFESSIONAL_SERVICES: {
+        "code": "IT Act 1961 §37(1) / §194J - Professional & Subcontractor Charges",
+        "rationale_template": "Payment remitted to {vendor} is professional fee for specialized contracting services or payment gateway platform fees.",
+        "docs": ["Contractor invoice / payment statement", "TDS deduction details if applicable under 194J"],
+    },
+    TaxCategory.EDUCATION_RESEARCH: {
+        "code": "IT Act 1961 §37(1) - Technical Skill Upgradation & Professional Courses",
+        "rationale_template": "Course and certification fee with {vendor} is incurred directly to keep technical knowledge up to date in the current profession.",
+        "docs": ["Course completion certificate", "Payment receipt / invoice"],
+    },
+    TaxCategory.CLIENT_MEALS: {
+        "code": "IT Act 1961 §37(1) - Business Development & Client Engagement",
+        "rationale_template": "Working lunch/dinner with {vendor} incurred strictly for prospective client discussions and project negotiations.",
+        "docs": ["Itemized restaurant/cafe bill", "Calendar entry of client meeting agenda"],
+    },
+    TaxCategory.TRAVEL_TRANSPORT: {
+        "code": "IT Act 1961 §37(1) - Professional Travel & Client Visit Expenses",
+        "rationale_template": "Transportation via {vendor} was incurred solely for client on-site visits, business development, or industry tech conferences.",
+        "docs": ["Cab ride receipt / flight boarding pass", "Client visit confirmation or meeting invite"],
+    },
+    TaxCategory.COMMUNICATION_INTERNET: {
+        "code": "IT Act 1961 §37(1) - High-Speed Broadband & Telecommunications",
+        "rationale_template": "High-speed broadband with {vendor} allocated at 50% business utility for remote client coordination and cloud repository operations.",
+        "docs": ["Monthly Airtel/JioFiber bill", "Payment confirmation"],
+    },
+    TaxCategory.PERSONAL_NON_DEDUCTIBLE: {
+        "code": "IT Act 1961 §40A(2) / Personal Living Expense",
+        "rationale_template": "Transaction with {vendor} is classified as personal expenditure and excluded from deductions to ensure 100% clean tax compliance.",
+        "docs": ["Personal bank records"],
+    },
+}
+
 
 class GemmaTaxDefenseCopilot:
-    """Generates structured IRS-compliant tax deduction rationale using Gemma 2 reasoning."""
+    """Generates structured tax deduction rationale using Gemma 2 reasoning across US and Indian regimes."""
 
     def __init__(self):
         self.model_name = settings.gemma_model_id
 
-    def generate_defense_rationale(self, txn: Transaction, custom_context: str = "") -> DeductionRationale:
-        """Crafts formal legal audit defense document for a specific deductible line item."""
+    def generate_defense_rationale(self, txn: Transaction, custom_context: str = "", regime: str = "auto") -> DeductionRationale:
+        """Crafts formal legal audit defense document for a specific line item."""
         category = txn.predicted_category
-        cat_info = IRS_CODE_MAP.get(category, IRS_CODE_MAP[TaxCategory.SOFTWARE_SAAS])
+        
+        # Determine regime
+        is_india = (regime == "india") or ("₹" in str(txn.amount) or "INR" in str(txn.amount) or any(k in txn.description.lower() for k in ["airtel", "jio", "razorpay", "bkc", "zomato", "swiggy", "koramangala"]))
+        code_dict = INDIA_CODE_MAP if is_india else IRS_CODE_MAP
+        cat_info = code_dict.get(category, code_dict.get(TaxCategory.SOFTWARE_SAAS, IRS_CODE_MAP[TaxCategory.SOFTWARE_SAAS]))
         
         vendor = txn.description
         amount_abs = abs(txn.amount)
@@ -83,13 +141,20 @@ class GemmaTaxDefenseCopilot:
         if custom_context:
             base_purpose += f" Specifically for: {custom_context.strip()}."
 
-        # Audit defense legal statement formatted for IRS examiner review
-        defense_text = (
-            f"Taxpayer maintains that the expenditure of ${amount_abs:.2f} to {vendor} on {txn.date} "
-            f"satisfies all statutory tests under {code_ref}. "
-            f"The expense is directly connected to the active conduct of trade/business and is customary within the industry. "
-            f"Taxpayer retains contemporaneous substantiation under IRC §274(d)."
-        )
+        if is_india:
+            currency_symbol = "₹"
+            defense_text = (
+                f"Assessee submits that the professional expense of {currency_symbol}{amount_abs:,.2f} to {vendor} on {txn.date} "
+                f"was incurred wholly and exclusively for the purpose of profession under {code_ref}. "
+                f"Assessee maintains contemporaneous documentary evidence. Note: Assessee may also elect Presumptive Taxation under Section 44ADA."
+            )
+        else:
+            currency_symbol = "$"
+            defense_text = (
+                f"Taxpayer maintains that the expenditure of {currency_symbol}{amount_abs:,.2f} to {vendor} on {txn.date} "
+                f"satisfies all statutory tests under {code_ref}. "
+                f"The expense is directly connected to the active conduct of trade/business and is customary within the industry."
+            )
 
         return DeductionRationale(
             transaction_id=txn.id,

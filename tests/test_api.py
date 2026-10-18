@@ -32,6 +32,15 @@ def test_audit_sample_persona():
     assert len(data["transactions"]) > 0
 
 
+def test_audit_indian_freelancer_sample():
+    res = client.get("/api/audit/sample/indian-freelancer")
+    assert res.status_code == 200
+    data = res.json()
+    assert data["summary"]["total_income"] > 500000.0  # In INR
+    assert data["summary"]["total_deductible"] > 0
+    assert len(data["transactions"]) > 0
+
+
 def test_gemma_defense_generation():
     payload = {
         "transaction": {

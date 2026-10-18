@@ -15,18 +15,23 @@ router = APIRouter(prefix="/api/audit", tags=["Audit"])
 auditor = TabPFNAuditor()
 
 PERSONAS = {
+    "indian-freelancer": {
+        "name": "Indian Tech Freelancer (INR)",
+        "file": "indian_freelancer_transactions.csv",
+        "description": "Software engineer & remote consultant with Section 44ADA & 37(1) deductions in ₹ INR.",
+    },
     "indie-dev": {
-        "name": "Indie Developer",
+        "name": "Indie Developer (USD)",
         "file": "indie_dev_transactions.csv",
         "description": "SaaS founder & indie hacker with cloud hosting, AI APIs, and developer tools.",
     },
     "freelance-designer": {
-        "name": "Freelance Designer",
+        "name": "Freelance Designer (USD)",
         "file": "freelance_designer_transactions.csv",
         "description": "Product designer with Creative Cloud, Figma, hardware, and client travel expenses.",
     },
     "digital-creator": {
-        "name": "Digital Creator",
+        "name": "Digital Creator (USD)",
         "file": "digital_creator_transactions.csv",
         "description": "Content creator & reseller with media subscriptions, equipment, and digital asset income.",
     },

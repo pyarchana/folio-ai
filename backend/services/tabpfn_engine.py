@@ -115,6 +115,8 @@ PRIOR_PATTERNS = [
     ("at&t broadband", TaxCategory.COMMUNICATION_INTERNET),
     ("t-mobile", TaxCategory.COMMUNICATION_INTERNET),
     ("comcast xfinity", TaxCategory.COMMUNICATION_INTERNET),
+    ("airtel", TaxCategory.COMMUNICATION_INTERNET),
+    ("jio", TaxCategory.COMMUNICATION_INTERNET),
     
     # Income
     ("stripe payout", TaxCategory.INCOME),
@@ -122,9 +124,16 @@ PRIOR_PATTERNS = [
     ("client invoice payment", TaxCategory.INCOME),
     ("wire transfer incoming", TaxCategory.INCOME),
     ("gumroad payout", TaxCategory.INCOME),
+    ("razorpay", TaxCategory.INCOME),
+    ("deel", TaxCategory.INCOME),
+    
+    # Client Meals & Travel
+    ("zomato", TaxCategory.CLIENT_MEALS),
+    ("zoho", TaxCategory.SOFTWARE_SAAS),
     
     # Personal / Non-Deductible
     ("grocery store", TaxCategory.PERSONAL_NON_DEDUCTIBLE),
+    ("swiggy", TaxCategory.PERSONAL_NON_DEDUCTIBLE),
     ("netflix", TaxCategory.PERSONAL_NON_DEDUCTIBLE),
     ("spotify personal", TaxCategory.PERSONAL_NON_DEDUCTIBLE),
     ("gym membership", TaxCategory.PERSONAL_NON_DEDUCTIBLE),
