@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folio — Local-First AI Financial Auditor for Freelancers</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: {
+              50: '#fdfbf7',
+              100: '#f7f5f0',
+              200: '#e5e1d8',
+              300: '#d5cfc1',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom Spatial Glassmorphism Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="antialiased selection:bg-zinc-900 selection:text-white">
+
+  <!-- ================= TOP FLOATING NAVIGATION PILL ================= -->
+  <header class="fixed top-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+    <div class="glass-pill-nav pointer-events-auto flex items-center justify-between gap-4 md:gap-8 px-6 py-3 rounded-full w-full max-w-5xl">
+      <!-- Logo & Airgap Status -->
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-white font-bold text-sm shadow-md">
+          F
+        </div>
+        <span class="font-bold tracking-tight text-lg text-zinc-900">Folio</span>
+        <div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-medium border border-emerald-200">
+          <span class="pulse-green"></span>
+          <span>100% Local Air-Gap</span>
+        </div>
+      </div>
+
+      <!-- Center Models Indicator -->
+      <div class="hidden md:flex items-center gap-2 text-xs text-zinc-500 font-mono">
+        <span class="px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-700">TabPFN 3.5</span>
+        <span>+</span>
+        <span class="px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-700">Gemma 2</span>
+      </div>
+
+      <!-- Actions: Currency Toggle & Audio Briefing -->
+      <div class="flex items-center gap-2.5">
+        <button 
+          id="currency-toggle-btn"
+          class="px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-zinc-800 text-xs font-semibold border border-zinc-200/80 shadow-sm transition hover:scale-105 active:scale-95"
+          title="Toggle currency display"
+        >
+          ₹ INR
+        </button>
+
+        <button 
+          id="audio-briefing-btn"
+          class="px-4 py-1.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-semibold shadow-md transition hover:scale-105 active:scale-95 flex items-center gap-2"
+        >
+          <div id="audio-wave" class="sound-wave hidden">
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+          </div>
+          <span id="audio-btn-text">Audio Briefing</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= LEFT FLOATING VERTICAL DOCK ================= -->
+  <aside class="floating-dock glass-pill hidden lg:flex">
+    <button class="dock-btn active" data-target="hero-section" title="Dashboard">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+    </button>
+    <button class="dock-btn" data-target="table-section" title="TabPFN Tabular Explorer">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+    </button>
+    <button class="dock-btn" data-target="anomalies-section" title="Anomaly Radar">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+    </button>
+    <button class="dock-btn" data-target="export-section" title="Export Schedule C">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+    </button>
+  </aside>
+
+  <!-- ================= MAIN WORKSPACE CANVAS ================= -->
+  <main class="pt-32 pb-24 px-4 md:px-8 max-w-7xl mx-auto">
+
+    <!-- Hero Section -->
+    <section id="hero-section" class="text-center max-w-3xl mx-auto mb-10">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 border border-zinc-200/80 shadow-sm text-xs font-medium text-zinc-700 mb-4">
+        <span>⚡ Built for Hacktoberfest Open-Source AI Challenge</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-950 mb-4 leading-tight">
+        Audit with ease. Keep every dollar. Zero cloud leaks.
+      </h1>
+      <p class="text-base md:text-lg text-zinc-600 leading-relaxed mb-6 font-normal">
+        Local-first financial intelligence for freelancers. TabPFN classifies write-offs directly from raw bank CSVs, while Gemma 2 crafts statutory audit defense statements.
+      </p>
+
+      <!-- 1-Click Persona Chips -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-8" id="persona-pills">
+        <button onclick="switchPersona('indian-freelancer')" data-persona="indian-freelancer" class="persona-pill px-4 py-2 rounded-full text-xs font-semibold transition shadow-sm border border-zinc-200/80 bg-zinc-900 text-white">
+          🇮🇳 Indian Tech Freelancer (INR)
+        </button>
+        <button onclick="switchPersona('indie-dev')" data-persona="indie-dev" class="persona-pill px-4 py-2 rounded-full text-xs font-semibold transition shadow-sm border border-zinc-200/80 bg-white/80 text-zinc-700 hover:bg-white">
+          💻 Indie Developer (USD)
+        </button>
+        <button onclick="switchPersona('freelance-designer')" data-persona="freelance-designer" class="persona-pill px-4 py-2 rounded-full text-xs font-semibold transition shadow-sm border border-zinc-200/80 bg-white/80 text-zinc-700 hover:bg-white">
+          🎨 Freelance Designer (USD)
+        </button>
+        <button onclick="switchPersona('digital-creator')" data-persona="digital-creator" class="persona-pill px-4 py-2 rounded-full text-xs font-semibold transition shadow-sm border border-zinc-200/80 bg-white/80 text-zinc-700 hover:bg-white">
+          📹 Digital Creator (USD)
+        </button>
+      </div>
+
+      <!-- CSV Dropzone Box -->
+      <div id="dropzone" class="glass-panel dropzone-box p-8 max-w-xl mx-auto cursor-pointer text-center group hover:border-zinc-400">
+        <input type="file" id="file-input" class="hidden" accept=".csv,.txt">
+        <div class="w-12 h-12 rounded-2xl bg-zinc-100 group-hover:bg-zinc-200/80 flex items-center justify-center mx-auto mb-3 transition">
+          <svg class="w-6 h-6 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+        </div>
+        <h3 id="dropzone-title" class="text-sm font-semibold text-zinc-800 mb-1">
+          Drop your bank or credit card CSV here
+        </h3>
+        <p class="text-xs text-zinc-500">
+          Supports Chase, Mercury, Wise, Amex, HDFC, ICICI, SBI, PayPal & Stripe. Data stays 100% on localhost.
+        </p>
+      </div>
+    </section>
+
+    <!-- Bento Stats Section -->
+    <section id="bento-stats-container">
+      <!-- Populated dynamically by Components.renderBentoStats -->
+    </section>
+
+    <!-- Two-Column Workspace -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Tabular Transactions (8 cols) -->
+      <div id="table-section" class="lg:col-span-8 space-y-6">
+        <div class="glass-panel p-6">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+            <div>
+              <div class="flex items-center gap-2">
+                <h2 class="text-lg font-bold text-zinc-900">TabPFN Classified Transactions</h2>
+                <span id="transaction-count-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-600 font-mono">
+                  Loading...
+                </span>
+              </div>
+              <p class="text-xs text-zinc-500 mt-0.5">Zero-shot tabular classification & IRS Schedule C / Sec 37(1) mapping</p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="relative w-full sm:w-64">
+              <input 
+                type="text" 
+                id="search-input"
+                placeholder="Search vendor or category..." 
+                class="w-full px-3.5 py-2 pl-9 rounded-full bg-white/80 border border-zinc-200/80 text-xs focus:outline-none focus:ring-2 focus:ring-zinc-900 transition"
+              >
+              <svg class="w-4 h-4 text-zinc-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+          </div>
+
+          <!-- Filter Tabs -->
+          <div class="flex items-center gap-2 border-b border-zinc-200/60 pb-3 mb-4 overflow-x-auto">
+            <button class="filter-tab active px-3.5 py-1.5 rounded-full text-xs font-semibold bg-zinc-900 text-white transition" data-filter="all">
+              All Transactions
+            </button>
+            <button class="filter-tab px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 transition" data-filter="deductible">
+              ✓ Eligible Write-Offs Only
+            </button>
+            <button class="filter-tab px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 transition" data-filter="anomalies">
+              ⚡ Flagged Anomalies
+            </button>
+            <button class="filter-tab px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 transition" data-filter="income">
+              💰 Revenue / Income
+            </button>
+          </div>
+
+          <!-- Table Container -->
+          <div class="overflow-x-auto">
+            <table class="w-full folio-table text-left">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Vendor / Details</th>
+                  <th>Classification</th>
+                  <th class="text-right">Amount</th>
+                  <th class="text-center">Confidence</th>
+                  <th class="text-right">Gemma Action</th>
+                </tr>
+              </thead>
+              <tbody id="transactions-table-body">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Category Breakdown & Anomaly Radar (4 cols) -->
+      <div class="lg:col-span-4 space-y-6">
+        
+        <!-- Category Breakdown Panel -->
+        <div class="glass-panel p-6">
+          <h3 class="text-sm font-bold text-zinc-900 uppercase tracking-wider mb-1">Deduction Distribution</h3>
+          <p class="text-xs text-zinc-500 mb-4">Breakdown by allowable tax expense categories</p>
+          <div id="category-progress-container">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Anomaly Radar Panel -->
+        <div id="anomalies-section" class="glass-panel p-6">
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="text-sm font-bold text-zinc-900 uppercase tracking-wider">TabPFN Anomaly Radar</h3>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-medium">Real-time</span>
+          </div>
+          <p class="text-xs text-zinc-500 mb-4">Spots phantom recurring charges & fee spikes</p>
+          <div id="anomaly-list-container">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Export Action Card -->
+        <div id="export-section" class="glass-panel p-6 bg-gradient-to-br from-zinc-900 to-zinc-800 text-white">
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-2 text-zinc-200">Accountant-Ready Export</h3>
+          <p class="text-xs text-zinc-400 mb-5 leading-relaxed">
+            Generate an itemized deduction schedule with statutory citations ready for your CA or CPA.
+          </p>
+          <button 
+            id="export-csv-btn" 
+            class="w-full py-3 px-4 rounded-full bg-white hover:bg-zinc-100 text-zinc-950 font-semibold text-xs transition shadow-lg hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+          >
+            <span>📄 Export Tax Schedule (CSV)</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ================= SPATIAL GLASS MODAL (Gemma 2 Defense) ================= -->
+  <div id="modal-overlay" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div id="modal-content" class="glass-modal max-w-2xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300">
+      <!-- Populated dynamically by Components.renderGemmaModalContent -->
+    </div>
+  </div>
+
+  <!-- Main Application Script -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
