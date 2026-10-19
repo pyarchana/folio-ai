@@ -2,7 +2,7 @@
 
 A free, air-gapped tax auditor for freelancers and indie hackers. Drop your bank statement on the broadsheet, and TabPFN classifies every write-off while Gemma writes the legal defense for your CA or the IRS.
 
-**Try it:** https://folio-ai.onrender.com
+**Try it:** [https://folio-ai.onrender.com](https://folio-ai-fefe.onrender.com/)
 
 ![A live walkthrough of Folio](frontend/assets/demo.gif)
 
